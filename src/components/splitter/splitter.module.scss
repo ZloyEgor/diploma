@@ -1,0 +1,25 @@
+.splitter {
+  align-items: stretch;
+  display: flex;
+}
+
+.left {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.resize {
+  min-height: 100%;
+  width: .5rem;
+  cursor: ew-resize;
+  background-color: black;
+  user-select: none;
+  touch-action: none;
+
+}
+
+.right {
+  flex: 1;
+  overflow: hidden;
+}
