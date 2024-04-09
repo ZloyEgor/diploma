@@ -1,7 +1,11 @@
 :root {
   --header-height: 4rem;
-  --footer-height: 4.5rem;
-  --content-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
 }
 
 .header{
@@ -10,9 +14,9 @@
 }
 
 .content {
-  height: var(--content-height);
+  flex: 1 1 auto;
 }
 
 .footer {
-  height: var(--footer-height);
+    border-top: 1px solid var(--color-1);
 }

@@ -1,4 +1,17 @@
 .container {
   display: flex;
-  height: var(--content-height);
+  height: 100%;
+}
+
+.left_part {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-2);
+}
+
+.splitter {
+  height: 100%;
 }

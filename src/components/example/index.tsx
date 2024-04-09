@@ -57,6 +57,8 @@ const options: Options = {
   },
   locale: 'ru',
   autoResize: true,
+  width: '100%',
+  height: '100%',
 };
 
 const GraphExample = component<GraphExampleProps>(
@@ -94,7 +96,12 @@ export const Example = component(() => {
 
   return (
     <Splitter
-      left={<>Здесь могла бы быть ваша релкама</>}
+      className={style.splitter}
+      left={
+        <div className={style.left_part}>
+          Выберите узел для отображения информации о нём
+        </div>
+      }
       right={
         <GraphExample
           getNetwork={(network) => {
