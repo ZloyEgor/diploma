@@ -10,7 +10,7 @@ export const AppLayout = component(() => (
   <Layout>
     <Sider width="15%">Sider</Sider>
     <Layout className={style.container}>
-      <Header className={style.header}>Схема запроса</Header>
+      <Header className={style.header}>Discover database</Header>
       <Content className={style.content}>
         <Outlet />
       </Content>

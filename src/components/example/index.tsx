@@ -1,12 +1,15 @@
 import { Props } from '../../utils/props.ts';
 import { Network, Options } from 'vis';
-import { HTMLProps, useMemo, useRef } from 'react';
+import React, { HTMLProps, useMemo, useRef } from 'react';
 import Graph, { GraphData, GraphEvents } from 'react-graph-vis';
 import { component } from '../../utils/component.tsx';
 import { generateEdges, generateNodes } from '../../utils/generate.ts';
 import { Splitter } from '../splitter';
 import style from './example.module.scss';
 import clsx from 'clsx';
+import { Space, Table, Tag } from 'antd';
+
+const { Column, ColumnGroup } = Table;
 
 type GraphExampleProps = Props<
   {
@@ -91,6 +94,61 @@ const GraphExample = component<GraphExampleProps>(
   },
 );
 
+const DescriptionExample = component(() => {
+  interface DataType {
+    key: React.Key;
+    value: number;
+    description: string;
+    tags: string[];
+    name: string;
+  }
+
+  const data: DataType[] = [
+    {
+      key: '1',
+      name: 'Node 47',
+      value: 32,
+      description: 'New York No. 1 Lake Park',
+      tags: ['nice'],
+    },
+  ];
+
+  return (
+    <Table dataSource={data}>
+      <Column title="Node Name" dataIndex="name" key="firstName" />
+      <Column title="Value" dataIndex="value" key="age" />
+      <Column title="Description" dataIndex="description" key="address" />
+      <Column
+        title="Tags"
+        dataIndex="tags"
+        key="tags"
+        render={(tags: string[]) => (
+          <>
+            {tags.map((tag) => {
+              let color = tag.length > 5 ? 'geekblue' : 'green';
+              return (
+                <Tag color={color} key={tag}>
+                  {tag.toUpperCase()}
+                </Tag>
+              );
+            })}
+          </>
+        )}
+      />
+      <Column
+        title="Action"
+        key="action"
+        render={(_: any, record: DataType) => (
+          <Space size="middle">
+            <a>Lookup {record.name}</a>
+            <a>Delete</a>
+          </Space>
+        )}
+      />
+    </Table>
+  );
+});
+
 export const Example = component(() => {
   const networkRef = useRef<Network>();
 
@@ -99,7 +157,7 @@ export const Example = component(() => {
       className={style.splitter}
       left={
         <div className={style.left_part}>
-          Выберите узел для отображения информации о нём
+          <DescriptionExample />
         </div>
       }
       right={
