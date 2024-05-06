@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { senseService } from '../../service/sense-service.ts';
 import { lexemeService } from '../../service/lexeme-service.ts';
 import { instanceService } from '../../service/instance-service.ts';
+import { decodeSinId } from '../../utils/decode-sin-id.ts';
 
 export const SearchView: FC = () => {
   const { data: sense, isLoading } = useQuery({
@@ -20,12 +21,11 @@ export const SearchView: FC = () => {
     queryKey: ['findInstance', sense],
     queryFn: () =>
       instanceService
-        // .findInstancesBySenseNumber(Number(sense?.id))
-        .findInstancesBySenseNumber(28761)
+        .findInstancesBySenseNumber(decodeSinId(sense!.id).senseId)
         .then((r) => r.data),
     enabled: sense !== null && sense !== undefined,
   });
 
-  console.log({ sense, instance });
+  console.log({ sense, instance, newId: sense && decodeSinId(sense?.id) });
   return <div>{isLoading && <p>Гружу данные...</p>} Hello! ^^</div>;
 };

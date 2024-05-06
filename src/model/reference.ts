@@ -2,9 +2,9 @@ export enum ReferenceType {
   PROPERTY = 'PROPERTY',
   ANTONYM = 'ANTONYM',
   SYNONYM = 'SYNONYM',
-  HYPONYM = 'HYPONYM',
+  HYPONYM = 'HYPONYM', //наследование
   HYPERNYM = 'HYPERNYM',
-  MERONYM = 'MERONYM',
+  MERONYM = 'MERONYM', //part-of
   HOLONYM = 'HOLONYM',
 }
 
