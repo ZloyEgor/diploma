@@ -3,7 +3,8 @@
   grid-template-areas:  "header header"
                         "menu outlet";
   grid-template-columns: fit-content(20ch);
-  height: 100%;
+  grid-template-rows: fit-content(4rem);
+  height: 100vh;
 
   &-header {
     grid-area: header;
@@ -15,4 +16,8 @@
     height: 100%;
   }
 
+  &-outlet {
+    grid-area: outlet;
+    max-height: 100%;
+  }
 }

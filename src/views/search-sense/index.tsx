@@ -12,6 +12,7 @@ import { ArrayParam, useQueryParam, withDefault } from 'use-query-params';
 import { Reference } from '../../model/reference.ts';
 import { convertSensesAndReferencesToGraphData } from '../../utils/convert.ts';
 import { LoadingSpinner } from '../../components/loading-spinner/loading-spinner.tsx';
+import { CenterWrapper } from '../../utils/center-wrapper';
 
 const options: Options = {
   edges: {
@@ -29,8 +30,12 @@ export const SearchView: FC = () => {
     withDefault(ArrayParam, []),
   );
 
-  const { data: senses, isLoading: isSenseLoading } = useQuery({
-    queryKey: ['getSense', searchTokens],
+  const {
+    data: senses,
+    isError: isGetSensesError,
+    isLoading: isSenseLoading,
+  } = useQuery({
+    queryKey: ['getSenses', searchTokens],
     queryFn: () =>
       Promise.all(
         searchTokens
@@ -44,7 +49,11 @@ export const SearchView: FC = () => {
     retry: false,
   });
 
-  const { data: references, isLoading: isReferencesLoading } = useQuery({
+  const {
+    data: references,
+    isLoading: isReferencesLoading,
+    isError: isGetReferencesError,
+  } = useQuery({
     queryFn: () =>
       Promise.all(
         senses?.map((sense) =>
@@ -60,19 +69,22 @@ export const SearchView: FC = () => {
     enabled: senses !== null && senses !== undefined && senses.length > 0,
   });
 
-  const { data: neighbourSenses, isLoading: isNeighbourSensesLoading } =
-    useQuery({
-      queryFn: () =>
-        Promise.all(
-          references!.map((r) =>
-            senseService
-              .findSenseById(decodeSinId(r.destination).senseId)
-              .then((r) => r.data),
-          ),
-        ).then((r) => r.filter((s) => s !== null) as Sense[]),
-      queryKey: ['getSenses', references],
-      enabled: references !== null && references !== undefined,
-    });
+  const {
+    data: neighbourSenses,
+    isLoading: isNeighbourSensesLoading,
+    isError: isGetNeighbourSensesError,
+  } = useQuery({
+    queryFn: () =>
+      Promise.all(
+        references!.map((r) =>
+          senseService
+            .findSenseById(decodeSinId(r.destination).senseId)
+            .then((r) => r.data),
+        ),
+      ).then((r) => r.filter((s) => s !== null) as Sense[]),
+    queryKey: ['getSenses', references],
+    enabled: references !== null && references !== undefined,
+  });
 
   const graphData = useMemo(() => {
     if (senses && neighbourSenses && references) {
@@ -85,6 +97,8 @@ export const SearchView: FC = () => {
 
   const isLoading =
     isSenseLoading || isNeighbourSensesLoading || isReferencesLoading;
+  const isError =
+    isGetSensesError || isGetReferencesError || isGetNeighbourSensesError;
   const isSearchValueEmpty = searchTokens.length === 0;
 
   return (
@@ -102,7 +116,14 @@ export const SearchView: FC = () => {
       />
       {isSearchValueEmpty && <p>Введите запрос</p>}
       {isLoading && <LoadingSpinner.Centered />}
-      {!isLoading && graphData && <Graph options={options} graph={graphData} />}
+      {isError && (
+        <CenterWrapper>
+          <>Во время загрузки данных произошла ошибка</>
+        </CenterWrapper>
+      )}
+      {!isLoading && !isError && graphData && (
+        <Graph options={options} graph={graphData} />
+      )}
     </div>
   );
 };

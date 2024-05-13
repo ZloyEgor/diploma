@@ -1,13 +1,11 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Layout, Menu, MenuProps } from 'antd';
+import { Layout, Menu } from 'antd';
 import style from './app-layout.module.scss';
 import {
   NavigateMenuItem,
   useNavigateMenu,
 } from '../../hooks/use-navigate-menu.tsx';
-
-type MenuItem = Required<MenuProps>['items'][number];
 
 const navigateMenuItems: NavigateMenuItem[] = [
   {
@@ -26,7 +24,9 @@ export const AppLayout: FC = () => {
         <h2>Визуализатор семантической сети</h2>
       </Layout.Header>
       <Menu className={style.appLayoutMenu} items={menuItems} />
-      <Outlet />
+      <div className={style.appLayoutOutlet}>
+        <Outlet />
+      </div>
     </div>
   );
 };

@@ -56,8 +56,8 @@ const options: Options = {
   },
   locale: 'ru',
   autoResize: true,
-  width: '100%',
-  height: '100%',
+  // width: '100%',
+  // height: '100%',
 };
 
 export const GraphExample = component<GraphExampleProps>(
