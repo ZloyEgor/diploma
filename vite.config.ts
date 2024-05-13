@@ -8,11 +8,16 @@ export default defineConfig({
     esbuildOptions: {
       // Node.js global to browser globalThis
       define: {
-        global: 'globalThis',
+        global: "globalThis",
       },
     },
   },
   server: {
     port: 3000,
+  },
+  css: {
+    modules: {
+      localsConvention: "camelCaseOnly",
+    },
   },
 });

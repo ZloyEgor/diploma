@@ -1,15 +1,17 @@
 import { FC } from 'react';
-import { Outlet, Route, Routes } from 'react-router-dom';
-import { SearchView } from '../../views/search';
+import { Route, Routes } from 'react-router-dom';
+import { SearchView } from '../../views/search-sense';
+import { AppLayout } from '../app-layout';
+import { GraphExample } from '../example';
 
-export const RouterRoutes: FC = () => {
+export const AppRoutes: FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<Outlet />}>
-        <Route index element={<SearchView />} />
-        <Route path="/test" element={'test'} />
-        <Route path="*" element={<>Hello</>} />
+      <Route path="/" element={<AppLayout />}>
+        <Route index path="/sense" element={<SearchView />} />
+        <Route path="*" element={<GraphExample />} />
       </Route>
+      <Route path="*" element={<>404 not found</>} />
     </Routes>
   );
 };

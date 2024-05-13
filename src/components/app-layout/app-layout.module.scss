@@ -1,0 +1,18 @@
+.app-layout {
+  display: grid;
+  grid-template-areas:  "header header"
+                        "menu outlet";
+  grid-template-columns: fit-content(20ch);
+  height: 100%;
+
+  &-header {
+    grid-area: header;
+    color: white;
+  }
+
+  &-menu {
+    grid-area: menu;
+    height: 100%;
+  }
+
+}

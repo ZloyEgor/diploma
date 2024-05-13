@@ -4,6 +4,8 @@ import { WithChildren } from '../../utils/props.ts';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '../../redux/store.ts';
+import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
+import { QueryParamProvider } from 'use-query-params';
 
 export const ThemeProvider = component<WithChildren>(({ children }) => {
   const queryClient = new QueryClient();
@@ -11,9 +13,11 @@ export const ThemeProvider = component<WithChildren>(({ children }) => {
   return (
     <Provider store={store}>
       <Router>
-        <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
+        <QueryParamProvider adapter={ReactRouter6Adapter}>
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+        </QueryParamProvider>
       </Router>
     </Provider>
   );

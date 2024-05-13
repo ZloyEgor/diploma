@@ -1,7 +1,7 @@
 import { Wordform } from './wordform.ts';
 
 export type Instance = {
-  id: number;
+  in: number;
   canonical: Wordform;
   instances: number[];
 };

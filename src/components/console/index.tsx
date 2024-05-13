@@ -20,7 +20,7 @@ export const Console = component<AutocompleteProps>(
         className={clsx(style.console, className)}
         autoSize={false}
         rows={6}
-        value={'SELECT sense LIMIT 250;'}
+        value={'SELECT sense LIMIT 1000;'}
         {...rest}
       />
     );

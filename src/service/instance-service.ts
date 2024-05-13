@@ -25,12 +25,12 @@ export const instanceService = {
       canonical_id: canonicalId,
     }),
 
-  findInstancesBySenseNumber: (senseId: number) =>
+  findInstancesBySenseId: (senseId: number) =>
     axiosClient.post<Instance[] | null>('find_instances', {
       sense_no: senseId,
     }),
 
-  findInstancesBySenseNumberAndValue: ({
+  findInstancesBySenseIdAndValue: ({
     id,
     value,
   }: {

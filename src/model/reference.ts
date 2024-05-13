@@ -6,6 +6,7 @@ export enum ReferenceType {
   HYPERNYM = 'HYPERNYM',
   MERONYM = 'MERONYM', //part-of
   HOLONYM = 'HOLONYM',
+  ALL = 'ALL',
 }
 
 export type Reference = {
