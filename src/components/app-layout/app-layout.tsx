@@ -5,7 +5,7 @@ import style from './app-layout.module.scss';
 import {
   NavigateMenuItem,
   useNavigateMenu,
-} from '../../hooks/use-navigate-menu.tsx';
+} from '../../hooks/use-navigate-menu.ts';
 
 const navigateMenuItems: NavigateMenuItem[] = [
   {

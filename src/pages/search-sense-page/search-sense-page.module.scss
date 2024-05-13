@@ -1,0 +1,10 @@
+.search-sense-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &-props {
+    padding: 1rem 1rem 3rem;
+    border-top: 1px solid var(--color-gray);
+  }
+}

@@ -1,0 +1,23 @@
+.container {
+
+}
+
+.label {
+  display: block;
+  margin-bottom: .25rem;
+}
+
+.input {
+  width: 100%;
+}
+
+.input_error {
+  border: 1px solid red;
+}
+
+.required {
+  .label::after {
+    color: red;
+    content: " *";
+  }
+}
