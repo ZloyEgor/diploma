@@ -22,6 +22,7 @@ const graph: GraphData = {
       label: 'Node 1',
       title: 'node 1 tootip text',
       shape: 'circle',
+      group: '1',
     },
     {
       id: 2,
@@ -34,9 +35,10 @@ const graph: GraphData = {
       label: 'Node 3',
       title: 'node 3 tootip text',
       shape: 'square',
+      group: '1',
     },
-    { id: 4, label: 'Node 4', title: 'node 4 tootip text' },
-    { id: 5, label: 'Node 5', title: 'node 5 tootip text' },
+    { id: 4, label: 'Node 4', title: 'node 4 tootip text', group: '2' },
+    { id: 5, label: 'Node 5', title: 'node 5 tootip text', group: '2' },
   ],
   edges: [
     { from: 1, to: 2, dashes: true, title: 'Oxi' },

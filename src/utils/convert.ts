@@ -2,6 +2,7 @@ import { Sense } from '../model/sense.ts';
 import { Reference } from '../model/reference.ts';
 import { GraphData } from 'react-graph-vis';
 import { decodeSinId } from './decode-sin-id.ts';
+import ellipsis from 'text-ellipsis';
 
 // const referenceTypeToArrow: { [key in ReferenceType]: ArrowHead } = {};
 
@@ -24,6 +25,13 @@ const removeReferenceDublicates = (references: Reference[]): Reference[] => {
   return Array.from(referenceMap, ([, reference]) => reference);
 };
 
+const renderTooltipData = (sense: Sense) => {
+  const wordforms = sense?.wordforms.map((w) => w.lexeme);
+  return `${sense.named_id}
+  Словоформы:
+  ${wordforms.join(',\n')}`;
+};
+
 export const convertSensesAndReferencesToGraphData = (
   senses: Sense[],
   references: Reference[],
@@ -34,7 +42,8 @@ export const convertSensesAndReferencesToGraphData = (
   return {
     nodes: sensesWithoutDuplicates.map((s) => ({
       id: s.id,
-      label: s.named_id,
+      label: ellipsis(s.named_id, 15),
+      title: renderTooltipData(s),
     })),
     edges: referencesWithoutDuplicates.map((r) => {
       const from = r.source;

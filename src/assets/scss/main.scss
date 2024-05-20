@@ -1,13 +1,14 @@
 @import "reset";
 @import "fonts";
 @import "variables";
+@import "visjs";
 
 html, body, #root {
   height: 100%;
 }
 
 #root {
-  font-family: var(--font-family-default);
+  font-family: var(--font-family-default), sans-serif;
   font-size: var(--font-size-default);
   font-style: var(--font-style-default);
   font-weight: var(--font-weight-default);

@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { SearchSensePage } from '../../pages/search-sense-page';
-import { AppLayout } from '../app-layout';
-import { GraphExample } from '../example';
+import { AppLayout } from '../util/app-layout';
+import { GraphExample } from '../../pages/example';
 
 export const AppRoutes: FC = () => {
   return (

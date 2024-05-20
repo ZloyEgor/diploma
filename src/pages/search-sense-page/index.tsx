@@ -1,6 +1,4 @@
 import { FC, useMemo } from 'react';
-import Graph from 'react-graph-vis';
-import { Options } from 'vis';
 import style from './search-sense-page.module.scss';
 import { ArrayParam, useQueryParam, withDefault } from 'use-query-params';
 import { convertSensesAndReferencesToGraphData } from '../../utils/convert.ts';
@@ -9,16 +7,7 @@ import { Select } from 'antd';
 import { useSearchSenses } from '../../hooks/use-search-senses.ts';
 import { CenterWrapper } from '../../utils/center-wrapper';
 import { LabeledInput } from '../../components/util/labeled-input';
-
-const options: Options = {
-  edges: {
-    color: '#000000',
-  },
-  locale: 'ru',
-  autoResize: true,
-  width: '100%',
-  height: '100%',
-};
+import { Graph } from '../../components/graph/graph.tsx';
 
 export const SearchSensePage: FC = () => {
   const [searchTokens, setSearchTokens] = useQueryParam(
@@ -70,9 +59,7 @@ export const SearchSensePage: FC = () => {
   return (
     <div className={style.searchSensePage}>
       {renderFeedbackMessage()}
-      {!isLoading && !isError && graphData && (
-        <Graph options={options} graph={graphData} />
-      )}
+      {!isLoading && !isError && graphData && <Graph graph={graphData} />}
       <div className={style.searchSensePageProps}>
         <LabeledInput
           label="Поиск по понятиям:"
