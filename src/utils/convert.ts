@@ -4,8 +4,6 @@ import { GraphData } from 'react-graph-vis';
 import { decodeSinId } from './decode-sin-id.ts';
 import ellipsis from 'text-ellipsis';
 
-// const referenceTypeToArrow: { [key in ReferenceType]: ArrowHead } = {};
-
 const removeSenseDuplicates = (senses: Sense[]): Sense[] => {
   const senseMap = new Map<number, Sense>();
   senses.forEach((sense) => {
@@ -53,14 +51,6 @@ export const convertSensesAndReferencesToGraphData = (
         from,
         to,
         label: r.type,
-        // arrows: {
-        //   to: {
-        //     type: 'image',
-        //     src: rhombus,
-        //     imageHeight: 20,
-        //     imageWidth: 12,
-        //   },
-        // },
       };
     }),
   };

@@ -13,11 +13,6 @@ const navigateMenuItems: NavigateMenuItem[] = [
     label: 'Поиск понятий',
     to: '/sense',
   },
-  {
-    key: '2',
-    label: 'Пример визуализации',
-    to: '/example',
-  },
 ];
 
 export const AppLayout: FC = () => {
